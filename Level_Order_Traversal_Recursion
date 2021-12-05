@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    int level = 0;
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        HashMap<Integer , List<Integer>> hm = new HashMap<>();
+        List<List<Integer>> ans = new ArrayList<>();
+        fillHashMap(hm , root , 1);
+        
+        int count = 1;
+        while(hm.containsKey(count)){
+            ans.add(hm.get(count));
+            count++;
+        }
+        
+        return ans;
+    }
+    
+    public void fillHashMap(HashMap<Integer , List<Integer>> hm , TreeNode node, int lvl ){
+        if(node == null){
+            return;
+        }
+        
+        if(!hm.containsKey(lvl)){
+            hm.put(lvl , new ArrayList<>());
+        }
+        
+        hm.get(lvl).add(node.val);
+        
+        level = Math.max(level , lvl);
+        
+        fillHashMap(hm , node.left , lvl + 1);
+        fillHashMap(hm , node.right , lvl + 1);
+    }
+}
