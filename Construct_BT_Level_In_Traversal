@@ -1,0 +1,48 @@
+class GfG
+{
+    Node buildTree(int inord[], int level[])
+    {
+        HashMap<Integer , Integer> hm = new HashMap<>();
+        int idx = 0;
+        for(int n : inord){
+            hm.put(n , idx++);
+        }
+        
+        return helper(inord , 0 , inord.length - 1  , level , hm);
+    }
+    Node helper( int inord[] , int si , int ei , int level[] , HashMap<Integer , Integer> hm){
+        if(level.length == 1){
+            return new Node(level[0]);
+        }
+        
+        // find idx 
+        Node root = new Node(level[0]);
+        
+        
+        int idx = hm.get(root.data);
+        int tot = idx - si;
+        
+        int left[] = new int[tot];
+        int right[] = new int[ei-idx];
+        int li = 0;
+        int ri = 0;
+        for(int n : level){
+            if(hm.get(n) < idx && hm.get(n) >= si){
+                left[li++] = n;
+            }
+            else if(hm.get(n) > idx && hm.get(n) <= ei){
+                right[ri++] = n;
+            }
+        }
+        
+        root.left = helper(inord , si , idx - 1 , left , hm);
+        root.right = helper(inord , idx + 1 , ei ,  right , hm);
+        
+        
+        return root;
+        
+        
+    }
+    
+   
+}
