@@ -37,3 +37,87 @@
         
     }
 };
+
+
+
+---------------------------------LEET CODE LONGEST INCREASING PATH ----------------------------------------
+
+class Solution {
+public:
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        
+        vector<vector<int>> indegree(n , vector<int>(m , 0));
+        
+        vector<vector<int>> dirs = {{0,1} , {1,0} , {0,-1} , {-1,0}};
+        // fill indegree
+        for(int i = 0; i < n ; i++){
+            for(int j = 0; j < m ; j++){
+                
+                for(auto dir : dirs){
+                    int x = i + dir[0];
+                    int y = j + dir[1];
+                    
+                    if(x >= 0 && y >= 0 && x < n && y < m && matrix[x][y] > matrix[i][j]){
+                        indegree[x][y]++;
+                    }
+                }
+            }
+        }
+        
+        
+        
+        // add into que -> add all the starting points
+        queue<int> que;
+        for(int i = 0; i < n ; i++ ){
+            for(int j = 0; j < m ; j++){
+                // if indegree is 0 then add into que
+                if(indegree[i][j] == 0){
+                    que.push(i * m + j);
+                }
+            }
+        }
+        
+        
+        
+        
+        // now use the bfs -> also increase 
+        int level = 0;
+        while(que.size() > 0){
+            
+            int size = que.size();
+            while(size--){
+                    int idx = que.front();
+                    que.pop();
+
+                    int i = idx / m;
+                    int j = idx % m;
+
+                // moving in all the 4 directions 
+                    for(auto dir : dirs){
+                            int x = i + dir[0];
+                            int y = j + dir[1];
+                            // 
+                            if(x >= 0 && y >= 0 && x < n && y < m && matrix[x][y] > matrix[i][j]){
+                                indegree[x][y]--;
+                                if(indegree[x][y] == 0){
+                                    que.push(x * m + y);
+                                }
+                            }
+                    }
+                
+            }
+            level++;
+            
+        }
+        return level;
+        
+        
+        
+    }
+};
+
+
+
+
