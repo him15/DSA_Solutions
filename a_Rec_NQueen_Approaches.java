@@ -197,7 +197,37 @@ public class Main{
         
     }
     
+    int row = 0;
+    int col = 0;
+    int dia = 0;
+    int antidia = 0;
     
+    public int nqueen_04(int n , int r ){
+        if(r == n){
+            return 1;
+        }
+        
+        
+        int count = 0;
+        for(int c = 0; c < n ; c++){
+            
+            // is safe
+            if( ( (row & (1<<c)) == 0 ) && ( (col & (1<<c)) == 0) && ( (dia & (1<< (r + c))) == 0) &&  ( (antidia & (1<< (r - c + n - 1))) == 0)  ){
+                row ^= (1<<c);
+                col ^= (1<<c);
+                dia ^= (1<< (r + c));
+                antidia ^= (1<< (r - c + n - 1));
+                count += helper(n , r + 1);
+                row ^= (1<<c);
+                col ^= (1<<c);
+                dia ^= (1<< (r + c));
+                antidia ^= (1<< (r - c + n - 1));
+            }
+            
+        }
+        
+        return count;
+    }
     
     public static void main(String args[]){
         
