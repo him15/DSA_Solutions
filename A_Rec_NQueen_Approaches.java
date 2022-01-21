@@ -229,6 +229,44 @@ public class Main{
         return count;
     }
     
+   
+//    =========================================QUESTIONS=======================================================
+   
+   
+//    Partition into K Subsets with equal sums ----
+   
+   public static int k_Subset_Partition(int[] arr, int vidx,int n , int k,int[] subsetSum,  ArrayList<ArrayList<Integer>> ans) {
+		//write your code here
+		if(vidx == arr.length){
+		    
+		    for(int i = 1; i < subsetSum.length ; i++){
+		        if(subsetSum[i-1] != subsetSum[i]) return 0;
+		    }
+		    for(ArrayList<Integer> lst : ans){
+		        
+    		    System.out.print(lst+" ");
+		    }
+		    System.out.println();
+		    return 1;
+		}
+		int count = 0;
+		for(int i = 0; i < k ; i++){
+		    subsetSum[i] += arr[vidx];
+		    ans.get(i).add(arr[vidx]);
+		    count += solution(arr , vidx + 1  , n , k , subsetSum , ans );
+		    subsetSum[i] -= arr[vidx];
+		    ans.get(i).remove(ans.get(i).size() - 1);
+		    
+		    if(ans.get(i).size() == 0) break;
+		}
+		return count;
+	}
+	
+   
+   
+   
+   
+   
     public static void main(String args[]){
         
         // int tnb = 5;
