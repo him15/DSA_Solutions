@@ -86,3 +86,45 @@ class Solution
 
 
 
+
+
+
+// -----------------------------------------------139. Word Break--------------------------------------------------
+class Solution {
+    
+    public boolean helper(String str , int i , HashSet<String> dic , int dp[]){
+        if(i == str.length() ){
+            dp[i] = 1;
+            return true;
+        }
+        
+        if( dp[i] != -1 ){
+            return dp[i] == 1;
+        }
+        
+        
+        for(int j = i + 1; j <= str.length() ; j++){
+            String word = str.substring(i , j);
+            if(dic.contains(word)){
+                boolean recAns = helper(str , j , dic , dp);
+                if(recAns){ 
+                    dp[i] = 1;
+                    return true;
+                }
+            }
+        }
+        
+        dp[i] = 0;
+        return false;
+    }
+    
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> dic = new HashSet<>();
+        for(String word : wordDict){
+            dic.add(word);
+        }
+        int dp[] = new int[s.length() + 1];
+        Arrays.fill(dp , -1);
+        return helper(s , 0 , dic , dp);
+    }
+}
