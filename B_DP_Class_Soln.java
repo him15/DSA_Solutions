@@ -1,7 +1,4 @@
 // --------------------------132. Palindrome Partitioning II-----------------------------------
-
-
-
 class Solution {
     
     public int minCut_helper(boolean pdp[][] , String str , int idx , int dp[]){
@@ -53,7 +50,38 @@ class Solution {
 
 
 
+
+
+
 // -------------------------------------GFG -> Count subsequences of type a^i, b^j, c^k  -------------------------------------
+class Solution
+{
+    public int fun(String s)
+    {
+        // Write your code here
+        long emptyCount = 1 , aCount = 0 , bCount = 0 , cCount = 0;
+        int mod = (int)(1e9 + 7);
+        
+        for(int i = 0; i <  s.length() ; i++){
+            char ch = s.charAt(i);
+            
+            if(ch == 'a'){
+                aCount = (aCount + (emptyCount + aCount)) % mod;
+            }
+            else if(ch == 'b'){
+                bCount = (bCount + (aCount + bCount))%mod;
+                
+            }
+            else if(ch == 'c'){
+                cCount = (cCount + (bCount + cCount)) % mod;
+                
+            }
+        }
+        
+        return (int)cCount;        
+        
+    }
+}
 
 
 
