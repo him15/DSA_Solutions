@@ -128,3 +128,28 @@ class Solution {
         return helper(s , 0 , dic , dp);
     }
 }
+
+// tabular
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        HashSet<String> dic = new HashSet<>();
+        for(String word : wordDict){
+            dic.add(word);
+        }
+        
+        boolean dp[] = new boolean[s.length() + 1];
+        dp[0] = true;
+        
+        for(int i = 0; i < dp.length ; i++){
+            for(int j = i + 1; j <= s.length() ; j++){
+                String str = s.substring(i , j);
+                if(dic.contains(str)){
+                    dp[j] = dp[j] || dp[i]; 
+                }
+            }
+        }
+        return dp[dp.length - 1];
+    }
+ }
+
+// -------------------------------------------------------------------
