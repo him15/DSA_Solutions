@@ -152,4 +152,58 @@ class Solution {
     }
  }
 
-// -------------------------------------------------------------------
+
+
+
+
+
+
+
+
+// -----------------------------------------------------LONGEST INCREASING SUBSEQUECE------------------------------
+class Solution {
+    
+    public int LIS_Memo(int arr[] , int idx , int dp[]){
+        
+        if(dp[idx] != 0) return dp[idx];
+        
+        int ans = 1;
+        for(int i = idx - 1; i >= 0 ; i--){
+            if(arr[i] < arr[idx]){
+                ans = Math.max(ans , LIS_Memo(arr , i , dp) + 1);
+            }
+        }
+        
+        return dp[idx] = ans;
+    }
+    
+    public int LIS_Tab(int arr[] , int dp[] ){
+        int n = arr.length;
+        int maxLen = 1;
+        for(int i = 0; i < n ; i++){
+            int len = 0;
+            for(int j = i -1 ; j >= 0 ; j--){
+                if(arr[j] < arr[i]){
+                    len = Math.max(len , dp[j]);    
+                }
+            }
+            dp[i] = len + 1;
+            maxLen = Math.max(maxLen , dp[i]);
+        }
+        return maxLen;
+    }
+    
+    
+    public int lengthOfLIS(int[] arr) {
+        int n = arr.length;
+        int dp[] = new int[arr.length ];
+        // int ans = 0;
+        
+        // for(int i = n - 1; i >= 0 ; i--){
+        //     ans = Math.max(ans , LIS_Memo(arr , i , dp) );
+        // }
+        int ans = LIS_Tab(arr , dp);
+        return ans;
+        
+    }
+}
