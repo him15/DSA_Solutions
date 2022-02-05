@@ -207,3 +207,53 @@ class Solution {
         
     }
 }
+
+
+// ------------------------TARGET SUM print paths Using BackEnginnering-----------------------------
+public class Main
+{
+   public static int back_Engg(boolean dp[][] , int arr[] , int idx , int tar,String psf){
+        if(tar == 0 || idx == 0){
+            if(tar == 0) {System.out.println(psf); return 1;}
+            return 0;
+        }
+        
+        int ele = arr[idx - 1];
+        int count = 0;
+        if(tar -ele >= 0 && dp[idx - 1][tar - ele]){
+            count += back_Engg(dp , arr , idx - 1 , tar - ele , ele + " "+psf);
+        }
+        if(dp[idx - 1][tar]){
+            count +=  back_Engg(dp , arr , idx - 1 , tar , psf);
+        }
+        return count;
+    }
+ 
+   public static void target_Sum(int arr[] , boolean dp[][] , int tar){
+       
+       dp[0][0] = true;
+       for(int i = 1; i <= arr.length ; i++){
+           for(int j = 0; j <= tar ; j++){
+               if(j == 0) {
+                   dp[i][j] = true;
+                   continue;
+               }
+               int ele = arr[i - 1];
+               if(j - ele >= 0){
+                   dp[i][j] = dp[i - 1][j-ele];
+               }
+               dp[i][j] = dp[i][j] || dp[i-1][j];
+           }
+       }
+       
+   }
+   public static void main(String[] args)
+    {   
+        int arr[] = {2,3,5,7};
+        int tar = 10;
+        boolean dp[][] = new boolean[arr.length + 1][tar + 1];
+        target_Sum(arr , dp , tar);
+        int c = back_Engg(dp , arr , arr.length , tar , "");
+        System.out.println(c);        
+    }
+}
