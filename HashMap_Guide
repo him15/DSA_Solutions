@@ -1,0 +1,46 @@
+//'''''''''''''''''' Traverse through the HashMap'''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+HashMap<Integer, Integer> map = new HashMap<>();
+
+//------------- way 1 ------------------------ using For Each Loop````````````````````````````````
+for( Map.Entry<String, Integer> ele : map.entrySet() ){
+		    String key = ele.getKey();
+		    int value = ele.getValue();
+		    
+		    System.out.println(key + " -> " + value);
+}
+
+
+// ------------------way 2 ````````````````````````````Using Iterator object`````````````````````````````
+
+		Iterator itr = map.entrySet().iterator();
+		
+		while( itr.hasNext() ){
+		    Map.Entry ele = (Map.Entry)itr.next();
+		    
+		    String key = (String)ele.getKey();
+		    int value = (int)ele.getValue();
+		    
+		    System.out.println(key + " -> " + value);
+		}
+
+
+// `````````````````````Sorted Order Set``````````````````````````````````
+// If we want the Set in sorted order then use the TreeSet
+        // work on String, Integer
+    // Iterate thrugh Direct For Each Loop
+
+TreeSet<String> set = new TreeSet<>();
+for(String str : set){
+		    System.out.println(str);
+}
+
+
+
+
+
+
+
+
