@@ -46,6 +46,14 @@ for(String str : set){
 }
 
 
+// `````````````````` WANT TO ACCESS THE HASHMAP IN SAME ORDER AS WE HAVE INSERTED WITH KEY PAIR``````````````````````````````
+	// use the Linked hashmap 
+	Map<Integer, String> map = new LinkedHashMap<>();
+
+
+
+
+
 // `````````````````` SORT IN TERMS OF KEY `````````````````````````````````````````````````````````````
 	
 	Map<Integer, String> map = new TreeMap<>();
@@ -66,6 +74,40 @@ for(String str : set){
             
             	System.out.println(key + " -> " + val);
         }
+
+
+
+
+// ------------ SORTED IN TERMS OF KEYS`````````````````````````````````````````````````````````````````````````````````
+
+Set<Map.Entry<Integer,String>> entry = map.entrySet();
+List<Map.Entry<Integer,String>> list = new ArrayList(entry);
+		
+		Collections.sort(list, new Comparator<Map.Entry<Integer,String>>(){
+		    
+		    @Override
+		    public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2){
+		        return o1.getValue().compareTo(o2.getValue());
+		    }
+		} );
+		
+	// Accessing from the List
+
+	list.forEach(s -> System.out.println(s.getKey() + " -> " + s.getValue() )  );
+
+
+
+//``````````````````````````````````````````````````````````````````NEW WAY````````````````````````````````
+
+		
+		
+// coping into the new LinkedHashMap from the list
+
+Map<Integer, String> sortedMap = new LinkedHashMap<>();
+list.forEach(s -> sortedMap.put(s.getKey() , s.getValue())  );
+
+// print
+sortedMap.forEach( (k,v) -> System.out.println(k + " -> " + v)  );
 
 
 
