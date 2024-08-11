@@ -26,6 +26,14 @@ for( Map.Entry<String, Integer> ele : map.entrySet() ){
 		    System.out.println(key + " -> " + value);
 		}
 
+// -------WAY 3-------------- ONE LINE ITERATOR`````````````````````````````````````` Best For Printing````````````````````
+
+map.forEach((k,v) -> System.out.println(k + " -> " + v)  );
+
+
+
+
+
 
 // `````````````````````Sorted Order Set``````````````````````````````````
 // If we want the Set in sorted order then use the TreeSet
@@ -37,6 +45,27 @@ for(String str : set){
 		    System.out.println(str);
 }
 
+
+// `````````````````` SORT IN TERMS OF KEY `````````````````````````````````````````````````````````````
+	
+	Map<Integer, String> map = new TreeMap<>();
+		
+		map.put(215 , "Himanshu");
+		map.put(1215 , "Ajay");
+		map.put(8215 , "Vikram");
+		map.put(524, "Vikash");
+		map.put(9972 , "zzWks");
+		map.put(379, "Manshu");
+		map.put(975, "Kisdd");
+		map.put(2, "Himanshu");
+		map.put(789, "Bablu");
+		
+	    for(Map.Entry<Integer, String> ele : map.entrySet() ){
+            	int key = ele.getKey();
+            	String val = ele.getValue();
+            
+            	System.out.println(key + " -> " + val);
+        }
 
 
 
