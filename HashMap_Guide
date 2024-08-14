@@ -112,6 +112,15 @@ sortedMap.forEach( (k,v) -> System.out.println(k + " -> " + v)  );
 
 
 
+// `````````````````````````````````````````````````````PRIORITY QUEUE````````````````````````````````````````````
+
+Queue<Integer> que = new PriorityQueue<>();  // Min Heap.
+
+Queue<Integer> que = new PriorityQueue<>( Collections.reverseOrder() );  // MAX Heap
+
+
+
+
 
 
 
