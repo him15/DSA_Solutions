@@ -32,3 +32,25 @@ public boolean hasCycle(ListNode head) {
         }
         return false;
 }
+
+
+// 14. Given a linked list containing a cycle, write a linear time algorithm to delete the cycle.
+
+public ListNode removeCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast !=  null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast)break;
+        }
+        while(slow != null){
+            head = head.next;
+            if(slow.next == head){
+                slow.next = null;
+                return;
+            }
+            slow = slow.next;
+        }
+}
