@@ -143,3 +143,28 @@ public int maxSubArray(int[] nums) {
         }
         return maxLen;
 }
+
+
+
+
+// 26. Given a sequence of n numbers and an integer k, design a linear time algorithm to compute
+      // the maximum sum sub array , whos length is exactly k.
+
+
+public long maximumSubarraySum(int[] nums, int k) {
+        long max = 0;
+        long sum = 0;
+
+        // find sum of th<e window
+        for(int i = 0; i < k ; i++){
+            sum += nums[i];
+        }
+        max = sum;
+
+        for(int i = k; i < nums.length ; i++){
+            sum -= nums[i - k];
+            sum += nums[i];
+            max = Math.max(max, sum);
+        }
+        return max;
+}
