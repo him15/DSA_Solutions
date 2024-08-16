@@ -119,3 +119,27 @@ public int[] maxSlidingWindow(int[] nums, int k) {
         }
         return ans;
 }
+
+
+
+// 25. Given a sequence of n numbers design a linear time algorithm to compute the length of the maximum sum sub array
+
+// Kandane Algorithm  Little Modification
+public int maxSubArray(int[] nums) {
+        int sum = 0;
+        int idx = 0;
+        int maxLen = 0;
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < nums.length ; i++){
+            if(sum < 0) {
+                sum = 0;
+                idx = i;
+            }
+            sum += nums[i];
+            if(max <= sum){
+                max = sum;
+                maxLen = Math.max(maxLen , i - idx + 1);
+            }
+        }
+        return maxLen;
+}
