@@ -83,3 +83,39 @@ public static boolean validateStackSequences(String str) {
         if(st.size() == 0) return true;
         return false;
 }
+
+
+
+
+
+
+// 16. You are given an array of integers, there is a sliding window of size at most k which is moving from left to right.
+     //You can only see at most k numbers in the window. Each time the sliding window moves right by one position. Design an linear time
+     // algorithm to compute the maximum in each window.
+
+
+
+public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length;
+        int ans[] = new int[n - k + 1];
+        int idx = 0;
+        Deque<Integer> dq = new ArrayDeque<>();
+
+        for(int i = 0; i < nums.length ; i++){
+            // remove element from dequeu which are out of the window from front
+            while(dq.size() != 0 && dq.getFirst() < i - k + 1){
+                dq.removeFirst();
+            }
+
+            // remove all the element which are smaller than current element
+            while(dq.size() != 0 && nums[dq.getLast()] <= nums[i] ){
+                dq.removeLast();
+            }
+            dq.addLast(i);
+            if(i >= k - 1){
+                ans[idx++] = nums[dq.getFirst()];
+            }
+
+        }
+        return ans;
+}
