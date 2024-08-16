@@ -120,7 +120,15 @@ Queue<Integer> que = new PriorityQueue<>( Collections.reverseOrder() );  // MAX 
 
 
 
+// ```````````````````````````````  DEQUEU ``````````````````````````` Can be inseted from front and back.
 
+
+ Deque<Integer> dq = new ArrayDeque<>();
+// offer  -> it is used to insert in the end.
+// getFirst()   ->
+// getLast()
+// addFirst()
+// addLast()
 
 
 
