@@ -54,3 +54,32 @@ public ListNode removeCycle(ListNode head) {
             slow = slow.next;
         }
 }
+
+
+
+
+
+// 15. Design a linear time algorithm to decide if a given sequence of numbers is a stack sequence.
+
+public static boolean validateStackSequences(String str) {
+        Stack<Integer> st = new Stack<>();
+        int n = str.length();
+        int remNum = 1;
+        for(int i = 0; i < str.length(); i++){
+            int num = str.charAt(i) - '0';
+            if(st.size() != 0 && st.peek() == num ){
+                st.pop();
+            }else{
+                while(remNum <= n){
+                    if(num == remNum){
+                        remNum++;
+                        break;
+                    }else{
+                        st.push(remNum++);
+                    }
+                }
+            }
+        }
+        if(st.size() == 0) return true;
+        return false;
+}
