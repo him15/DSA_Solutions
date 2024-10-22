@@ -112,6 +112,26 @@ sortedMap.forEach( (k,v) -> System.out.println(k + " -> " + v)  );
 
 
 
+// ++++++++++++ SORT IN Terms of Value in REVERSE Order ++++++++++++++++++++++++++++++++
+       // Convert the HashMap to a List of Map entries
+        List<Map.Entry<Integer, Double>> list = new ArrayList<>(tmap.entrySet());
+
+        // Sort the list based on values in descending order
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Double>>() {
+            public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
+                return o2.getValue().compareTo(o1.getValue());  // Sort in reverse order
+            }
+        });
+        
+        // Maintain insertion order in a LinkedHashMap
+        Map<Integer, Double> map = new LinkedHashMap<>();
+        for (Map.Entry<Integer, Double> entry : list) {
+            map.put(entry.getKey(), entry.getValue());
+        }
+
+
+
+
 // `````````````````````````````````````````````````````PRIORITY QUEUE````````````````````````````````````````````
 
 Queue<Integer> que = new PriorityQueue<>();  // Min Heap.
