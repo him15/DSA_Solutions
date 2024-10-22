@@ -112,7 +112,9 @@ sortedMap.forEach( (k,v) -> System.out.println(k + " -> " + v)  );
 
 
 
-// ++++++++++++ SORT IN Terms of Value in REVERSE Order ++++++++++++++++++++++++++++++++
+// ++++++++++++ SORT IN Terms of Value in REVERSE Order(Decreasing Order) ++++++++++++++++++++++++++++++++
+
+	HashMap<Integer, Double> tmap = new HashMap<>();
        // Convert the HashMap to a List of Map entries
         List<Map.Entry<Integer, Double>> list = new ArrayList<>(tmap.entrySet());
 
@@ -128,6 +130,14 @@ sortedMap.forEach( (k,v) -> System.out.println(k + " -> " + v)  );
         for (Map.Entry<Integer, Double> entry : list) {
             map.put(entry.getKey(), entry.getValue());
         }
+
+// +++++++++++++++++ IN Acending Order ++++++++++++++++++++++
+
+// Just swap the o1 and o2 in the same upper function
+
+
+
+
 
 
 
