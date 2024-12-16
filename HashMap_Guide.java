@@ -160,5 +160,36 @@ Queue<Integer> que = new PriorityQueue<>( Collections.reverseOrder() );  // MAX 
 // addFirst()
 // addLast()
 
+//  --------------min queue of Pair type sorted with the first variable----------
+Queue<Pair> que = new PriorityQueue<>((a,b)-> Integer.compare(a.first , b.first) );
+
+
+
+
+// ======= if first variable is same the check with the second variable===============
+
+PriorityQueue<Pair> minHeap = new PriorityQueue<>(
+            (a, b) -> {
+                if (a.first != b.first) {
+                    return Integer.compare(a.first, b.first); // Compare by 'first'
+                } else {
+                    return Integer.compare(a.second, b.second); // If 'first' is equal, compare by 'second'
+                }
+            }
+        );
+
+
+
+// =========================================  MAX HEAP=========================
+
+PriorityQueue<Pair> maxHeap = new PriorityQueue<>(
+            (a, b) -> {
+                if (a.first != b.first) {
+                    return Integer.compare(b.first, a.first); // Compare 'first' in descending order
+                } else {
+                    return Integer.compare(b.second, a.second); // If 'first' is equal, compare 'second' in descending order
+                }
+            }
+        );
 
 
